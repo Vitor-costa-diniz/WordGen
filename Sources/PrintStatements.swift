@@ -33,9 +33,10 @@ class PrintStatements {
         let greenText = "\u{001B}[0;32m\(wordGen)\u{001B}[0m"
         print(greenText)
         
+        print("")
+        print("")
+        
         matriz.generateMatriz(size: size)
         
-        print("")
-        print("")
     }
 }

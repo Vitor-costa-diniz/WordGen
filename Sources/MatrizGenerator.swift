@@ -9,9 +9,10 @@ import Foundation
 
 class MatrizGenerator {
     private let matriz = Array("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
-    private let wordsSorted: [Word] = []
+    private var wordsSorted: [Word] = []
     
     func generateMatriz(size: Int) {
+        setWords(size: size)
         for _ in 1...size {
             for _ in 1...size {
                 print("\(matriz.randomElement()!) ", terminator: "")
@@ -19,6 +20,7 @@ class MatrizGenerator {
             }
             print("")
         }
+        print(wordsSorted)
     }
 }
 
@@ -31,27 +33,27 @@ extension MatrizGenerator {
         for element in words {
             var helper = Word()
             helper.word = element
-            helper.initPosition = sortPosition(size: size, wordSize: element.count, last: false)
+            helper.initPosition = sortPosition(size: size, word: helper, first: true)
+            helper.lastPosition = sortPosition(size: size, word: helper, first: false)
+            wordsSorted.append(helper)
         }
     }
     
-    private func sortPosition(size: Int, wordSize: Int, last: Bool) -> [Int] {
-        let range: ClosedRange = (0...size)
-        let l = range.randomElement()!
-        var c = range.randomElement()!
-        
-        while c > wordSize {
-            c = range.randomElement()!
+    private func sortPosition(size: Int, word: Word, first: Bool) -> [Int] {
+        if first {
+            let range: ClosedRange = (0...size)
+            let l: Int = range.randomElement()!
+            var c: Int = range.randomElement()!
+            
+            while c > word.word.count {
+                c = range.randomElement()!
+            }
+            return [l,c]
+        } else {
+            let initPostionArray = word.initPosition
+            let l: Int = initPostionArray[0]
+            let c: Int = initPostionArray[1] + word.word.count
+            return [l,c]
         }
-
-        return [l,c]
     }
-}
-
-struct Word {
-    var word: String = ""
-    // Linha x Coluna
-    var initPosition: [Int] = []
-    // Linha x Coluna
-    var lastPosition: [Int] = []
 }
