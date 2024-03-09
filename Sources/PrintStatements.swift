@@ -19,6 +19,7 @@ class PrintStatements {
     }
     
     func startGame(size: Int) {
+        let matriz: MatrizGenerator = MatrizGenerator()
         let wordGen = """
                  _     _  _______  ______    ______   _______  _______  __    _
                 | | _ | ||       ||    _ |  |      | |       ||       ||  |  | |
@@ -28,21 +29,13 @@ class PrintStatements {
                 |   _   ||       ||   |  | ||       ||   |_| ||   |___ | | |   |
                 |__| |__||_______||___|  |_||______| |_______||_______||_|  |__|
                 """
-        
-        let matriz = Array("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
-        
+
         let greenText = "\u{001B}[0;32m\(wordGen)\u{001B}[0m"
         print(greenText)
         
-        print("")
-        print("")
+        matriz.generateMatriz(size: size)
         
-        for _ in 1...size {
-            for _ in 1...size {
-                print("\(matriz.randomElement()!) ", terminator: "")
-                usleep(10000)
-            }
-            print("")
-        }
+        print("")
+        print("")
     }
 }
