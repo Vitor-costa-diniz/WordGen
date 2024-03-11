@@ -13,4 +13,5 @@ struct Word {
     var initPosition: [Int] = []
     // Linha x Coluna
     var lastPosition: [Int] = []
+    var wasFound: Bool = false
 }

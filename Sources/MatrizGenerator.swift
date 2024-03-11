@@ -20,28 +20,25 @@ class MatrizGenerator {
             }
             print("")
         }
-        print(wordsSorted)
     }
 }
 
 extension MatrizGenerator {
     private func setWords(size: Int) {
-        let words = ["Futebol", "Nordeste",
-            "Ceara", "Ferroviario","Gols",
-            "Castelao", "Bahia", "Recife"]
+        let words = ["FUTEBOL"]
         
         for element in words {
             var helper = Word()
             helper.word = element
-            helper.initPosition = sortPosition(size: size, word: helper, first: true)
-            helper.lastPosition = sortPosition(size: size, word: helper, first: false)
+            helper.initPosition = sortPosition(size: size, word: helper, firstPosition: true)
+            helper.lastPosition = sortPosition(size: size, word: helper, firstPosition: false)
             wordsSorted.append(helper)
         }
     }
     
-    private func sortPosition(size: Int, word: Word, first: Bool) -> [Int] {
-        if first {
-            let range: ClosedRange = (0...size)
+    private func sortPosition(size: Int, word: Word, firstPosition: Bool) -> [Int] {
+        if firstPosition {
+            let range: ClosedRange = (1...size)
             let l: Int = range.randomElement()!
             var c: Int = range.randomElement()!
             
