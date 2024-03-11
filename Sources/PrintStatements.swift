@@ -8,6 +8,8 @@
 import Foundation
 
 class PrintStatements {
+    private let matrizGenerator: MatrizGenerator = MatrizGenerator()
+    
     func printInGameOptions() {
         print("""
     IN GAME OPTIONS:
@@ -19,7 +21,6 @@ class PrintStatements {
     }
     
     func startGame(size: Int) {
-        let matriz: MatrizGenerator = MatrizGenerator()
         let wordGen = """
                  _     _  _______  ______    ______   _______  _______  __    _
                 | | _ | ||       ||    _ |  |      | |       ||       ||  |  | |
@@ -36,7 +37,10 @@ class PrintStatements {
         print("")
         print("")
         
-        matriz.generateMatriz(size: size)
-        
+        matrizGenerator.generateMatriz(size: size)
+    }
+    
+    func printCurrentGame() {
+        matrizGenerator.printMatriz()
     }
 }

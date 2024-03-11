@@ -9,13 +9,25 @@ import Foundation
 
 class MatrizGenerator {
     private let matriz = Array("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+    private var boardSize: Int = 0
     private var wordsSorted: [Word] = []
+    private var generatedMatriz: [[String]] = []
     
     func generateMatriz(size: Int) {
-        setWords(size: size)
-        for _ in 1...size {
-            for _ in 1...size {
-                print("\(matriz.randomElement()!) ", terminator: "")
+        self.boardSize = size
+        generatedMatriz = [[String]](repeating: [String](repeating: "", count: size), count: size)
+//        setWords(size: size)
+        for l in 0...size - 1 {
+            for c in 0...size - 1 {
+                generatedMatriz[l][c] = String(matriz.randomElement()!)
+            }
+        }
+    }
+    
+    func printMatriz() {
+        for l in 0...self.boardSize - 1 {
+            for c in 0...self.boardSize - 1 {
+                print("\(generatedMatriz[l][c]) ",terminator: "")
                 usleep(10000)
             }
             print("")

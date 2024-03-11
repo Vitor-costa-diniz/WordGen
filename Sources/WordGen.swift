@@ -31,8 +31,10 @@ brings, we also make it simple to the user make his own word search themed game.
         
         if start && (size ?? 10 >= 10 && size ?? 10 <= 40) {
             printStatements.startGame(size: size ?? 10)
+            printStatements.printCurrentGame()
+
         } else {
-            print("O o valor máximo do tabuleiro é de 40")
+            print("O valor máximo do tabuleiro é de 40")
         }
     }
 }
