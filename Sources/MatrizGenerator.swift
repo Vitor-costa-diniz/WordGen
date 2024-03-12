@@ -70,20 +70,18 @@ extension MatrizGenerator {
     
     private func sortPosition(word: Word, firstPosition: Bool) -> [Int] {
         if firstPosition {
-            let range: ClosedRange = (0...boardSize - 1)
-            let l: Int = range.randomElement()!
-            var c: Int = range.randomElement()!
-            
-            print("Primeira vez sorteada: \(c)")
-            while c > word.word.count {
-                c = range.randomElement()!
-                print("Outras vezes sorteadas: \(c)")
-            }
+            let l: Int = Int.random(in: 0..<boardSize)
+            let c: Int = Int.random(in: 0..<boardSize - word.word.count + 1)
+
             return [l,c]
+            
         } else {
             let initPostionArray = word.initPosition
             let l: Int = initPostionArray[0]
             let c: Int = initPostionArray[1] - 1 + word.word.count
+            if c >= boardSize {
+                return sortPosition(word: word, firstPosition: true)
+            }
             return [l,c]
         }
     }
