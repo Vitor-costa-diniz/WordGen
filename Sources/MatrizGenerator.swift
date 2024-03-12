@@ -15,11 +15,31 @@ class MatrizGenerator {
     
     func generateMatriz(size: Int) {
         self.boardSize = size
+        var count = 0
+
         generatedMatriz = [[String]](repeating: [String](repeating: "", count: size), count: size)
-//        setWords(size: size)
+        
+        setWords()
+        
+        print("Posição inicial: \(wordsSorted[0].initPosition)")
+        print("Posição final: \(wordsSorted[0].lastPosition)")
+        
+        let rangeCollunm = wordsSorted[0].initPosition[1]...wordsSorted[0].lastPosition[1]
+        let characters = Array(wordsSorted[0].word)
+        
         for l in 0...size - 1 {
             for c in 0...size - 1 {
-                generatedMatriz[l][c] = String(matriz.randomElement()!)
+                if (l == wordsSorted[0].initPosition[0] && l == wordsSorted[0].lastPosition[0]) && rangeCollunm.contains(c) {
+                    generatedMatriz[l][c] = String(characters[count])
+                    count += 1
+                }
+                
+                if generatedMatriz[l][c] == "" {
+                    generatedMatriz[l][c] = String(matriz.randomElement()!)
+                    if count != 0 {
+                        count = 0
+                    }
+                }
             }
         }
     }
@@ -36,32 +56,34 @@ class MatrizGenerator {
 }
 
 extension MatrizGenerator {
-    private func setWords(size: Int) {
+    private func setWords() {
         let words = ["FUTEBOL"]
         
         for element in words {
             var helper = Word()
             helper.word = element
-            helper.initPosition = sortPosition(size: size, word: helper, firstPosition: true)
-            helper.lastPosition = sortPosition(size: size, word: helper, firstPosition: false)
+            helper.initPosition = sortPosition(word: helper, firstPosition: true)
+            helper.lastPosition = sortPosition(word: helper, firstPosition: false)
             wordsSorted.append(helper)
         }
     }
     
-    private func sortPosition(size: Int, word: Word, firstPosition: Bool) -> [Int] {
+    private func sortPosition(word: Word, firstPosition: Bool) -> [Int] {
         if firstPosition {
-            let range: ClosedRange = (1...size)
+            let range: ClosedRange = (0...boardSize - 1)
             let l: Int = range.randomElement()!
             var c: Int = range.randomElement()!
             
+            print("Primeira vez sorteada: \(c)")
             while c > word.word.count {
                 c = range.randomElement()!
+                print("Outras vezes sorteadas: \(c)")
             }
             return [l,c]
         } else {
             let initPostionArray = word.initPosition
             let l: Int = initPostionArray[0]
-            let c: Int = initPostionArray[1] + word.word.count
+            let c: Int = initPostionArray[1] - 1 + word.word.count
             return [l,c]
         }
     }
