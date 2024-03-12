@@ -18,11 +18,17 @@ class MatrizGenerator {
         var count = 0
 
         generatedMatriz = [[String]](repeating: [String](repeating: "", count: size), count: size)
-        
         setWords()
         
-        print("Posição inicial: \(wordsSorted[0].initPosition)")
-        print("Posição final: \(wordsSorted[0].lastPosition)")
+        self.wordsSorted = wordsSorted.sorted { word1, word2 in
+            if word1.initPosition[0] == word2.initPosition[0] {
+                return word1.initPosition[1] < word2.initPosition[1]
+            } else {
+                return word1.initPosition[0] < word2.initPosition[0]
+            }
+        }
+        
+        print(wordsSorted)
         
         let rangeCollunm = wordsSorted[0].initPosition[1]...wordsSorted[0].lastPosition[1]
         let characters = Array(wordsSorted[0].word)
@@ -57,7 +63,7 @@ class MatrizGenerator {
 
 extension MatrizGenerator {
     private func setWords() {
-        let words = ["FUTEBOL"]
+        let words = ["Futebol","Ceara","Castelao"]
         
         for element in words {
             var helper = Word()
