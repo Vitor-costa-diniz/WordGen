@@ -38,12 +38,12 @@ struct WordGen: ParsableCommand {
     var theme: String?
     
     func run() throws {
-        let printStatements = PrintStatements()
+        let game = Game()
+        game.boardSize = size
         
         if start && (size >= 10 && size <= 40) {
-            printStatements.startGame(size: size)
-            printStatements.printCurrentGame()
-
+            game.startGame()
+            
         } else {
             print("O valor máximo do tabuleiro é de 40")
         }

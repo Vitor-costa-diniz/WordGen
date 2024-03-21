@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Rainbow
 
 class PrintStatements {
     private let matrizGenerator: MatrizGenerator = MatrizGenerator()
@@ -20,7 +21,7 @@ class PrintStatements {
     """)
     }
     
-    func startGame(size: Int) {
+    func startGame() {
         let wordGen = """
                  _     _  _______  ______    ______   _______  _______  __    _
                 | | _ | ||       ||    _ |  |      | |       ||       ||  |  | |
@@ -31,13 +32,10 @@ class PrintStatements {
                 |__| |__||_______||___|  |_||______| |_______||_______||_|  |__|
                 """
 
-        let greenText = "\u{001B}[0;32m\(wordGen)\u{001B}[0m"
-        print(greenText)
+        print(wordGen.green)
         
         print("")
         print("")
-        
-        matrizGenerator.generateMatriz(size: size)
     }
     
     func printCurrentGame() {
