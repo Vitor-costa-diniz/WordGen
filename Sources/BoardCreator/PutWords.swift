@@ -36,15 +36,67 @@ extension MatrizGenerator {
     }
     
     private func putWords(word: inout Word) {
+        var line = word.initPosition[0]
+        var column = word.initPosition[1]
+        let wordSize = word.name.count
+        var letter = 0
+        var permittedPosition = verifyPosition(word)
+        // Verifica a posição para ver se ta ok
+        while !permittedPosition {
+            switch word.orientation {
+            case .horizontal:
+                let newPositions = position(palavrainfo: word.name)
+                word.initPosition = newPositions.0
+                word.lastPosition = newPositions.1
+                word.orientation = newPositions.2
+                
+                line = word.initPosition[0]
+                column = word.initPosition[1]
+                
+                if let index = words.firstIndex(where: { $0.name == word.name }) {
+                    words[index] = word
+                }
+                permittedPosition = verifyPosition(word)
+            case .vertical:
+                let newPositions = position(palavrainfo: word.name)
+                word.initPosition = newPositions.0
+                word.lastPosition = newPositions.1
+                word.orientation = newPositions.2
+            
+                if let index = words.firstIndex(where: { $0.name == word.name }) {
+                    words[index] = word
+                }
+
+                permittedPosition = verifyPosition(word)
+            }
+        }
         
+        line = word.initPosition[0]
+        column = word.initPosition[1]
+        
+        // Começar a colar a palavra
+        switch word.orientation {
+        case .horizontal:
+            for _ in column..<column + wordSize {
+                generatedMatriz[line][column + letter] = String(Array(word.name)[letter])
+                letter += 1
+            }
+            
+        case .vertical:
+            for _ in line..<line + wordSize {
+                generatedMatriz[line + letter][column] = String(Array(word.name)[letter])
+                letter += 1
+            }
+        }
     }
     
-    func verifyPosition(word: Word) -> Bool {
+    func verifyPosition(_ word: Word) -> Bool {
         let line = word.initPosition[0]
         let column = word.initPosition[1]
         let wordSize = word.name.count
         var putLetter = 0
         var count = 0
+
         switch word.orientation {
         case .horizontal:
             for _ in column..<column + wordSize {

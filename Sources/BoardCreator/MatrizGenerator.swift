@@ -10,7 +10,7 @@ import Foundation
 class MatrizGenerator {
     private let matriz = Array("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
     var boardSize: Int = 0
-    private var words: [Word] = []
+    var words: [Word] = []
     private var chosenWords: [String] = []
     var generatedMatriz: [[String]] = []
     
