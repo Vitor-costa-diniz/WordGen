@@ -9,16 +9,27 @@ import ArgumentParser
 struct WordGen: ParsableCommand {
     static let configuration = CommandConfiguration(
         commandName: "wordgen",
-        abstract: """
-Is a customizable word search projetc that aims to save you in times
-of boredom,in addition to all the cognitive benefits that a word search already
-brings, we also make it simple to the user make his own word search themed game.
-""")
+        abstract:         """
+        
+        WORDGEN
+        
+        Is a customizable word search projetc that aims to save you in times of boredom,
+        in addition to all the cognitive benefits that a word search already brings,
+        we also make it simple to the user make his own word search themed game.
+        
+        """,
+        discussion: """
+          IN GAME OPTIONS:
+          !hint          Highlights a letter of a word that has not been found yet.
+          !resolve       Resolve game.
+          !exit          Exit the game.
+          
+          """)
     @Flag(name: [.customLong("start")], help: "Start game")
     var start: Bool = false
     
     @Option(name: [.customLong("size")], help: "Custom board size, min 10x10 and max 40x40")
-    var size: Int?
+    var size: Int = 11
     
     @Option(name: .long, help: "Choose a language between Portuguese and English.")
     var language: String?
@@ -29,8 +40,8 @@ brings, we also make it simple to the user make his own word search themed game.
     func run() throws {
         let printStatements = PrintStatements()
         
-        if start && (size ?? 10 >= 10 && size ?? 10 <= 40) {
-            printStatements.startGame(size: size ?? 10)
+        if start && (size >= 10 && size <= 40) {
+            printStatements.startGame(size: size)
             printStatements.printCurrentGame()
 
         } else {
