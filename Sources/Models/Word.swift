@@ -9,8 +9,8 @@ import Foundation
 
 struct Word {
     var word: String
+    var wasFound: Bool
     var initPosition: [Int]
     var lastPosition: [Int]
-    var wasFound: Bool
     var orientation: Orientation
 }

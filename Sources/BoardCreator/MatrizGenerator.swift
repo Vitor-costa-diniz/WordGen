@@ -10,7 +10,7 @@ import Foundation
 class MatrizGenerator {
     private let matriz = Array("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
     var boardSize: Int = 0
-    private var wordsSorted: [Word] = []
+    private var words: [Word] = []
     private var chosenWords: [String] = []
     private var generatedMatriz: [[String]] = []
     
@@ -54,6 +54,13 @@ extension MatrizGenerator {
                 chosenWords.append(word)
                 count += 1
             }
+        }
+    }
+    
+    private func fillWordsArray() {
+        for word in chosenWords {
+            let wordPostion = position(palavrainfo: word)
+            words.append(Word(word: word, wasFound: false, initPosition: wordPostion.0, lastPosition: wordPostion.1 , orientation: wordPostion.2))
         }
     }
 }
