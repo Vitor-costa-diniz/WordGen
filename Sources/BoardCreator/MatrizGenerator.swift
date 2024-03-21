@@ -39,6 +39,28 @@ class MatrizGenerator {
             print("")
         }
     }
+    
+    func verifyRemainWords() -> Bool {
+        var count: Int = 0
+
+        for word in self.words {
+            if word.wasFound == true {
+                count += 1
+            }
+        }
+        return !(words.count == count)
+    }
+    
+    func verificaWords (palavraTentada: String) {
+        for palavra in words {
+            if palavra.name == palavraTentada.uppercased() {
+                if let index = words.firstIndex(where: { $0.name == palavra.name }) {
+                    words[index].wasFound = true
+                }
+                pintaPalavra(word: palavra)
+            }
+        }
+    }
 }
 
 extension MatrizGenerator {
@@ -81,6 +103,28 @@ extension MatrizGenerator {
         for word in chosenWords {
             let wordPostion = position(palavrainfo: word)
             words.append(Word(name: word, wasFound: false, initPosition: wordPostion.0, lastPosition: wordPostion.1 , orientation: wordPostion.2))
+        }
+    }
+    
+    private func pintaPalavra(word: Word) {
+        let line = word.initPosition[0]
+        let colunm = word.initPosition[1]
+        let wordSize = word.name.count
+        var letter = 0
+        
+        switch word.orientation {
+            // Começar a colar a palavra
+        case .horizontal:
+            for _ in colunm..<colunm + wordSize {
+                generatedMatriz[line][colunm + letter] = generatedMatriz[line][colunm + letter].green
+                letter += 1
+            }
+            
+        case .vertical:
+            for _ in line..<line + wordSize {
+                generatedMatriz[line + letter][colunm] = generatedMatriz[line + letter][colunm].green
+                letter += 1
+            }
         }
     }
 }

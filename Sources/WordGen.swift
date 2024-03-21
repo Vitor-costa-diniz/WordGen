@@ -37,16 +37,30 @@ struct WordGen: ParsableCommand {
     @Option(name: .shortAndLong, help: "Choose a theme from thise available, the list of themes can be found in help information.")
     var theme: String?
     
-    func run() throws {
+    mutating func run() throws {
         let game = Game()
         game.boardSize = size
         
-        game.startGame()
-        
-//        if start && (size >= 10 && size <= 40) {
-//            
-//        } else {
-//            print("O valor máximo do tabuleiro é de 40")
-//        }
+        if start && (size >= 10 && size <= 40) {
+            game.startGame()
+            
+            while start {
+                print("Digite uma palavra que vc achou: ",terminator: "")
+                let input = readLine() ?? ""
+                
+                game.checkWord(word: input)
+                
+                game.printCurrentGame()
+                
+                start = game.wereAllWordsFinded()
+                
+                if input == "exit" {
+                    start = false
+                }
+            }
+            
+        } else {
+            print("O valor máximo do tabuleiro é de 40")
+        }
     }
 }
