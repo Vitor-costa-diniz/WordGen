@@ -10,10 +10,10 @@ import Foundation
 typealias Direction = ([Int], [Int], Orientation)
 
 extension MatrizGenerator {
-    func position (palavrainfo: String, direction: Orientation? = nil) -> Direction {
+    func position (palavrainfo: String) -> Direction {
         var tuplePosi: Direction
         var fit: Bool = false
-        let wordDirection: Orientation = [direction ?? .horizontal, direction ?? .vertical].randomElement()!
+        let wordDirection: Orientation = [.horizontal, .vertical].randomElement()!
         let wordSize = palavrainfo.count
         
         while !fit {
