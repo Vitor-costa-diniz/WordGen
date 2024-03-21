@@ -14,6 +14,8 @@ class Game {
     
     func startGame() {
         matrizGenerator.boardSize = boardSize
+        
+        matrizGenerator.generateMatriz()
     }
     
 }
