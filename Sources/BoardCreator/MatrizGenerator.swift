@@ -15,9 +15,7 @@ class MatrizGenerator {
     private var generatedMatriz: [[String]] = []
     
     func generateMatriz() {
-        
         generatedMatriz = [[String]](repeating: [String](repeating: "", count: boardSize), count: boardSize)
-        
         
         printMatriz()
     }

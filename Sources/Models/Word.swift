@@ -8,10 +8,9 @@
 import Foundation
 
 struct Word {
-    var word: String = ""
-    // Linha x Coluna
-    var initPosition: [Int] = []
-    // Linha x Coluna
-    var lastPosition: [Int] = []
-    var wasFound: Bool = false
+    var word: String
+    var initPosition: [Int]
+    var lastPosition: [Int]
+    var wasFound: Bool
+    var orientation: Orientation
 }
