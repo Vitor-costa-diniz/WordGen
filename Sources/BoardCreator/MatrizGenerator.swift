@@ -12,10 +12,12 @@ class MatrizGenerator {
     var boardSize: Int = 0
     private var words: [Word] = []
     private var chosenWords: [String] = []
-    private var generatedMatriz: [[String]] = []
+    var generatedMatriz: [[String]] = []
     
     func generateMatriz() {
         generatedMatriz = [[String]](repeating: [String](repeating: "", count: boardSize), count: boardSize)
+        
+        fillWordsArray()
         
         printMatriz()
     }
@@ -60,7 +62,7 @@ extension MatrizGenerator {
     private func fillWordsArray() {
         for word in chosenWords {
             let wordPostion = position(palavrainfo: word)
-            words.append(Word(word: word, wasFound: false, initPosition: wordPostion.0, lastPosition: wordPostion.1 , orientation: wordPostion.2))
+            words.append(Word(name: word, wasFound: false, initPosition: wordPostion.0, lastPosition: wordPostion.1 , orientation: wordPostion.2))
         }
     }
 }

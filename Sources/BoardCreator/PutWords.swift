@@ -33,6 +33,35 @@ extension MatrizGenerator {
                 return tuplePosi
             }
         }
+    }
+    
+    private func putWords(word: inout Word) {
         
+    }
+    
+    func verifyPosition(word: Word) -> Bool {
+        let line = word.initPosition[0]
+        let column = word.initPosition[1]
+        let wordSize = word.name.count
+        var putLetter = 0
+        var count = 0
+        switch word.orientation {
+        case .horizontal:
+            for _ in column..<column + wordSize {
+                if generatedMatriz[line][column + count] == "" || generatedMatriz[line][column + count] == String(Array(word.name)[count]) {
+                    putLetter += 1
+                }
+                count += 1
+            }
+            return putLetter == wordSize
+        case .vertical:
+            for _ in line..<line + wordSize {
+                if generatedMatriz[line + count][column] == "" || generatedMatriz[line + count][column] == String(Array(word.name)[count]) {
+                    putLetter += 1
+                }
+                count += 1
+            }
+            return putLetter == wordSize
+        }
     }
 }

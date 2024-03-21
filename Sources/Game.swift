@@ -16,6 +16,7 @@ class Game {
         matrizGenerator.boardSize = boardSize
         
         matrizGenerator.generateMatriz()
+        
     }
     
 }
