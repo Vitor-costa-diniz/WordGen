@@ -41,11 +41,12 @@ struct WordGen: ParsableCommand {
         let game = Game()
         game.boardSize = size
         
-        if start && (size >= 10 && size <= 40) {
-            game.startGame()
-            
-        } else {
-            print("O valor máximo do tabuleiro é de 40")
-        }
+        game.startGame()
+        
+//        if start && (size >= 10 && size <= 40) {
+//            
+//        } else {
+//            print("O valor máximo do tabuleiro é de 40")
+//        }
     }
 }

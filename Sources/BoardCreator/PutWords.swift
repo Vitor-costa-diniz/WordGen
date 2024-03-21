@@ -35,7 +35,7 @@ extension MatrizGenerator {
         }
     }
     
-    private func putWords(word: inout Word) {
+    func putWords(word: inout Word) {
         var line = word.initPosition[0]
         var column = word.initPosition[1]
         let wordSize = word.name.count
@@ -57,6 +57,7 @@ extension MatrizGenerator {
                     words[index] = word
                 }
                 permittedPosition = verifyPosition(word)
+
             case .vertical:
                 let newPositions = position(palavrainfo: word.name)
                 word.initPosition = newPositions.0
@@ -66,7 +67,6 @@ extension MatrizGenerator {
                 if let index = words.firstIndex(where: { $0.name == word.name }) {
                     words[index] = word
                 }
-
                 permittedPosition = verifyPosition(word)
             }
         }
@@ -90,7 +90,7 @@ extension MatrizGenerator {
         }
     }
     
-    func verifyPosition(_ word: Word) -> Bool {
+    private func verifyPosition(_ word: Word) -> Bool {
         let line = word.initPosition[0]
         let column = word.initPosition[1]
         let wordSize = word.name.count

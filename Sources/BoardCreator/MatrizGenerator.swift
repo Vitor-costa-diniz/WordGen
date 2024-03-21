@@ -17,7 +17,15 @@ class MatrizGenerator {
     func generateMatriz() {
         generatedMatriz = [[String]](repeating: [String](repeating: "", count: boardSize), count: boardSize)
         
+        sortition()
+
         fillWordsArray()
+        
+        for var word in words {
+            putWords(word: &word)
+        }
+        
+        fillEmptySpace()
         
         printMatriz()
     }
@@ -34,6 +42,16 @@ class MatrizGenerator {
 }
 
 extension MatrizGenerator {
+    private func fillEmptySpace() {
+        for l in 0..<boardSize {
+            for c in 0..<boardSize {
+                if (generatedMatriz[l][c]) == "" {
+                    generatedMatriz[l][c] = String(matriz.randomElement()!)
+                }
+            }
+        }
+    }
+    
     private func sortition() {
         let numWords: Int =  boardSize/2 + 3
         
@@ -52,7 +70,7 @@ extension MatrizGenerator {
         
         while count <= numWords {
             word = words.randomElement()!
-            if word.count < boardSize - 1  && !chosenWords.contains(word) {
+            if word.count < boardSize - 1 && !chosenWords.contains(word) {
                 chosenWords.append(word)
                 count += 1
             }
