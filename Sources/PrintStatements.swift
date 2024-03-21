@@ -37,8 +37,4 @@ class PrintStatements {
         print("")
         print("")
     }
-    
-    func printCurrentGame() {
-        matrizGenerator.printMatriz()
-    }
 }

@@ -47,16 +47,18 @@ struct WordGen: ParsableCommand {
             while start {
                 print("Digite uma palavra que vc achou: ",terminator: "")
                 let input = readLine() ?? ""
-                
+
                 game.checkWord(word: input)
                 
-                game.printCurrentGame()
+                if input == "exit" {
+                    break
+                }
                 
                 start = game.wereAllWordsFinded()
                 
-                if input == "exit" {
-                    start = false
-                }
+                game.printCurrentGame()
+                
+                
             }
             
         } else {
