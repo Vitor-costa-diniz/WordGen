@@ -41,20 +41,23 @@ struct WordGen: ParsableCommand {
         let game = Game()
         game.boardSize = size
         
-        if start && (size >= 10 && size <= 40) {
+        if start && (size >= 11 && size <= 40) {
             game.startGame()
             
             while start {
-                print("Digite uma palavra que vc achou: ",terminator: "")
+                print("Digite uma palavra que você achou: ",terminator: "")
                 let input = readLine() ?? ""
 
                 game.checkWord(word: input)
                 game.gameOptions(option: input)
+                
                 start = game.wereAllWordsFinded()
+                
+                game.displayWordProgress()
                 game.printCurrentGame()
             }
         } else {
-            print("O valor máximo do tabuleiro é de 40")
+            print("O tamanho para o tabuleiro tem que ser entre 11 e 40")
         }
     }
 }

@@ -15,10 +15,13 @@ class Game {
     func startGame() {
         matrizGenerator.boardSize = boardSize
         
+        matrizGenerator.generateMatriz()
+
         printStatements.startGame()
 
-        matrizGenerator.generateMatriz()
+        displayWordProgress()
         
+        printCurrentGame()
     }
     
     func checkWord(word: String) {
@@ -31,6 +34,13 @@ class Game {
     
     func wereAllWordsFinded() -> Bool {
         return matrizGenerator.verifyRemainWords()
+    }
+    
+    func displayWordProgress() {
+        let totalWords = matrizGenerator.words.count
+        let unfoundWords = matrizGenerator.words.filter { $0.wasFound }.count
+        
+        print("Current progress: \(unfoundWords)/\(totalWords)")
     }
     
     func gameOptions(option: String) {

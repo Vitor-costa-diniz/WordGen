@@ -26,8 +26,6 @@ class MatrizGenerator {
         }
         
         fillEmptySpace()
-        
-        printMatriz()
     }
     
     func printMatriz() {
@@ -53,7 +51,7 @@ class MatrizGenerator {
     
     func verificaWords (palavraTentada: String) {
         for palavra in words {
-            if palavra.name == palavraTentada.uppercased() {
+            if palavra.name.isEqualIgnoringAccents(palavraTentada.uppercased()) {
                 if let index = words.firstIndex(where: { $0.name == palavra.name }) {
                     words[index].wasFound = true
                 }
