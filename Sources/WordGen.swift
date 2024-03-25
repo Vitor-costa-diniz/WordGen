@@ -20,9 +20,9 @@ struct WordGen: ParsableCommand {
         """,
         discussion: """
           IN GAME OPTIONS:
-          !hint          Highlights a letter of a word that has not been found yet.
-          !resolve       Resolve game.
-          !exit          Exit the game.
+          --hint          Highlights a letter of a word that has not been found yet.
+          --resolve       Resolve game.
+          --exit          Exit the game.
           
           """)
     @Flag(name: [.customLong("start")], help: "Start game")
@@ -50,7 +50,7 @@ struct WordGen: ParsableCommand {
 
                 game.checkWord(word: input)
                 
-                if input == "exit" {
+                if input == "--exit" {
                     break
                 }
                 
@@ -58,9 +58,7 @@ struct WordGen: ParsableCommand {
                 
                 game.printCurrentGame()
                 
-                
             }
-            
         } else {
             print("O valor máximo do tabuleiro é de 40")
         }

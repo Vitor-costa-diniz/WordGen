@@ -14,9 +14,9 @@ class PrintStatements {
     func printInGameOptions() {
         print("""
     IN GAME OPTIONS:
-    !hint          Highlights a letter of a word that has not been found yet.
-    !resolve       Resolve game.
-    !exit          Exit the game.
+    --hint          Highlights a letter of a word that has not been found yet.
+    --resolve       Resolve game.
+    --exit          Exit the game.
     
     """)
     }
