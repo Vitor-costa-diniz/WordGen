@@ -103,6 +103,17 @@ class MatrizGenerator {
                     letter += 1
                 }
             }
+            if let index = words.firstIndex(where: { $0.name == word.name }) {
+                words[index].wasFound = true
+            }
+        }
+    }
+    
+    func exitGame() {
+        for word in words {
+            if let index = words.firstIndex(where: { $0.name == word.name }) {
+                words[index].wasFound = true
+            }
         }
     }
 }

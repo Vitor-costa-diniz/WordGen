@@ -40,9 +40,9 @@ class Game {
         case "--resolve":
             matrizGenerator.resolveGame()
         case "--exit":
-            print("Sai")
+            matrizGenerator.exitGame()
         default:
-            let _ = 0
+            break
         }
     }
 }

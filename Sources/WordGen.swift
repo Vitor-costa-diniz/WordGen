@@ -49,17 +49,9 @@ struct WordGen: ParsableCommand {
                 let input = readLine() ?? ""
 
                 game.checkWord(word: input)
-                
-                if input == "--exit" {
-                    break
-                }
-                
                 game.gameOptions(option: input)
-                
                 start = game.wereAllWordsFinded()
-                
                 game.printCurrentGame()
-                
             }
         } else {
             print("O valor máximo do tabuleiro é de 40")
