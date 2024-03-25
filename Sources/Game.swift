@@ -38,7 +38,7 @@ class Game {
         case "--hint":
             matrizGenerator.showHint()
         case "--resolve":
-            print("teste")
+            matrizGenerator.resolveGame()
         case "--exit":
             print("Sai")
         default:
