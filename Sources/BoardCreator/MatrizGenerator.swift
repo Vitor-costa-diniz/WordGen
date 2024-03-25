@@ -61,6 +61,26 @@ class MatrizGenerator {
             }
         }
     }
+    
+    func showHint() {
+        let unfoundWords = words.filter { !$0.wasFound }
+        guard let word = unfoundWords.randomElement() else { return }
+        let wordSize = word.name.count
+        
+        let line = word.initPosition[0]
+        let column = word.initPosition[1]
+        
+        // Começar a colar a palavra
+        switch word.orientation {
+        case .horizontal:
+            let randomLetter = Int.random(in: 0..<wordSize)
+            generatedMatriz[line][column + randomLetter] = String(Array(word.name)[randomLetter]).blue
+            
+        case .vertical:
+            let randomLetter = Int.random(in: 0..<wordSize)
+            generatedMatriz[line + randomLetter][column] = String(Array(word.name)[randomLetter]).blue
+        }
+    }
 }
 
 extension MatrizGenerator {

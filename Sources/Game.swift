@@ -32,4 +32,17 @@ class Game {
     func wereAllWordsFinded() -> Bool {
         return matrizGenerator.verifyRemainWords()
     }
+    
+    func gameOptions(option: String) {
+        switch option.lowercased() {
+        case "--hint":
+            matrizGenerator.showHint()
+        case "--resolve":
+            print("teste")
+        case "--exit":
+            print("Sai")
+        default:
+            let _ = 0
+        }
+    }
 }

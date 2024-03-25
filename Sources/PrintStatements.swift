@@ -9,8 +9,6 @@ import Foundation
 import Rainbow
 
 class PrintStatements {
-    private let matrizGenerator: MatrizGenerator = MatrizGenerator()
-    
     func printInGameOptions() {
         print("""
     IN GAME OPTIONS:

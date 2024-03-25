@@ -54,6 +54,8 @@ struct WordGen: ParsableCommand {
                     break
                 }
                 
+                game.gameOptions(option: input)
+                
                 start = game.wereAllWordsFinded()
                 
                 game.printCurrentGame()
