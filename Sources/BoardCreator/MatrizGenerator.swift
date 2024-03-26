@@ -37,16 +37,11 @@ class MatrizGenerator {
             print("")
         }
     }
-    
+    /// Checks if the array of Word objects still contains words that have not been found.
+    /// - RETURNS: `true` if there are still words to be found, otherwise returns `false`.
     func verifyRemainWords() -> Bool {
-        var count: Int = 0
-
-        for word in self.words {
-            if word.wasFound == true {
-                count += 1
-            }
-        }
-        return !(words.count == count)
+        let remainingWordsCount = words.filter { !$0.wasFound }.count
+        return remainingWordsCount > 0
     }
     
     func verificaWords (palavraTentada: String) {
