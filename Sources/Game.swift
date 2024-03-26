@@ -32,6 +32,7 @@ class Game {
     
     func printCurrentGame() {
         matrizGenerator.printMatriz()
+        print("")
     }
     
     func wereAllWordsFinded() -> Bool {
@@ -43,10 +44,16 @@ class Game {
         let unfoundWords = matrizGenerator.words.filter { $0.wasFound }.count
         
         print("Current progress: \(unfoundWords)/\(totalWords)")
+        print("")
     }
     
     func displayTheme() {
         print("Current Theme: \(matrizGenerator.theme)")
+    }
+    
+    func printLine() {
+        let line = String(repeating: "-", count: 37)
+        print(line)
     }
     
     func gameOptions(option: String) {

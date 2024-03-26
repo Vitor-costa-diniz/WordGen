@@ -41,6 +41,8 @@ struct WordGen: ParsableCommand {
             while start {
                 print("Digite uma palavra que você achou: ",terminator: "")
                 let input = readLine()?.replacingOccurrences(of: " ", with: "") ?? ""
+                
+                game.printLine()
 
                 game.checkWord(word: input)
                 game.gameOptions(option: input)

@@ -50,6 +50,7 @@ class MatrizGenerator {
     
     /// Verifies if the word entered by the user is present in the array of words. If found, highlights the word in the grid.
     ///
+    /// - Parameter triedWord: Word entered by the user
     /// Accent marks in the word are ignored during the check.
     func verifycaWords (triedWord: String) {
         for word in words {
