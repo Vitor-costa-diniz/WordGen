@@ -78,13 +78,13 @@ extension MatrizGenerator {
         switch word.orientation {
         case .horizontal:
             for _ in column..<column + wordSize {
-                generatedMatriz[line][column + letter] = String(Array(word.name)[letter])
+                generatedGrid[line][column + letter] = String(Array(word.name)[letter])
                 letter += 1
             }
             
         case .vertical:
             for _ in line..<line + wordSize {
-                generatedMatriz[line + letter][column] = String(Array(word.name)[letter])
+                generatedGrid[line + letter][column] = String(Array(word.name)[letter])
                 letter += 1
             }
         }
@@ -100,7 +100,7 @@ extension MatrizGenerator {
         switch word.orientation {
         case .horizontal:
             for _ in column..<column + wordSize {
-                if generatedMatriz[line][column + count] == "" || generatedMatriz[line][column + count] == String(Array(word.name)[count]) {
+                if generatedGrid[line][column + count] == "" || generatedGrid[line][column + count] == String(Array(word.name)[count]) {
                     putLetter += 1
                 }
                 count += 1
@@ -108,7 +108,7 @@ extension MatrizGenerator {
             return putLetter == wordSize
         case .vertical:
             for _ in line..<line + wordSize {
-                if generatedMatriz[line + count][column] == "" || generatedMatriz[line + count][column] == String(Array(word.name)[count]) {
+                if generatedGrid[line + count][column] == "" || generatedGrid[line + count][column] == String(Array(word.name)[count]) {
                     putLetter += 1
                 }
                 count += 1

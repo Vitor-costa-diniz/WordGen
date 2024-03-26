@@ -12,10 +12,10 @@ class MatrizGenerator {
     var boardSize: Int = 0
     var words: [Word] = []
     private var chosenWords: [String] = []
-    var generatedMatriz: [[String]] = []
+    var generatedGrid: [[String]] = []
     
-    func generateMatriz() {
-        generatedMatriz = [[String]](repeating: [String](repeating: "", count: boardSize), count: boardSize)
+    func generateGrid() {
+        generatedGrid = [[String]](repeating: [String](repeating: "", count: boardSize), count: boardSize)
         
         sortition()
 
@@ -31,7 +31,7 @@ class MatrizGenerator {
     func printMatriz() {
         for l in 0...self.boardSize - 1 {
             for c in 0...self.boardSize - 1 {
-                print("\(generatedMatriz[l][c]) ",terminator: "")
+                print("\(generatedGrid[l][c]) ",terminator: "")
                 usleep(UInt32(10000/boardSize))
             }
             print("")
@@ -67,11 +67,11 @@ class MatrizGenerator {
         switch word.orientation {
         case .horizontal:
             let randomLetter = Int.random(in: 0..<wordSize)
-            generatedMatriz[line][column + randomLetter] = String(Array(word.name)[randomLetter]).blue
+            generatedGrid[line][column + randomLetter] = String(Array(word.name)[randomLetter]).blue
             
         case .vertical:
             let randomLetter = Int.random(in: 0..<wordSize)
-            generatedMatriz[line + randomLetter][column] = String(Array(word.name)[randomLetter]).blue
+            generatedGrid[line + randomLetter][column] = String(Array(word.name)[randomLetter]).blue
         }
     }
     
@@ -86,13 +86,13 @@ class MatrizGenerator {
                 // Começar a colar a palavra
             case .horizontal:
                 for _ in colunm..<colunm + wordSize {
-                    generatedMatriz[line][colunm + letter] = generatedMatriz[line][colunm + letter].green
+                    generatedGrid[line][colunm + letter] = generatedGrid[line][colunm + letter].green
                     letter += 1
                 }
                 
             case .vertical:
                 for _ in line..<line + wordSize {
-                    generatedMatriz[line + letter][colunm] = generatedMatriz[line + letter][colunm].green
+                    generatedGrid[line + letter][colunm] = generatedGrid[line + letter][colunm].green
                     letter += 1
                 }
             }
@@ -115,8 +115,8 @@ extension MatrizGenerator {
     private func fillEmptySpace() {
         for l in 0..<boardSize {
             for c in 0..<boardSize {
-                if (generatedMatriz[l][c]) == "" {
-                    generatedMatriz[l][c] = String(matriz.randomElement()!)
+                if (generatedGrid[l][c]) == "" {
+                    generatedGrid[l][c] = String(matriz.randomElement()!)
                 }
             }
         }
@@ -164,13 +164,13 @@ extension MatrizGenerator {
             // Começar a colar a palavra
         case .horizontal:
             for _ in colunm..<colunm + wordSize {
-                generatedMatriz[line][colunm + letter] = generatedMatriz[line][colunm + letter].green
+                generatedGrid[line][colunm + letter] = generatedGrid[line][colunm + letter].green
                 letter += 1
             }
             
         case .vertical:
             for _ in line..<line + wordSize {
-                generatedMatriz[line + letter][colunm] = generatedMatriz[line + letter][colunm].green
+                generatedGrid[line + letter][colunm] = generatedGrid[line + letter][colunm].green
                 letter += 1
             }
         }
