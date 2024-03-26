@@ -7,9 +7,16 @@
 
 import Foundation
 
+/// A type representing the position and orientation of a word.
 typealias Direction = ([Int], [Int], Orientation)
 
 extension MatrizGenerator {
+    /// Responsible for randomly selecting a position for the word and also responsible for
+    /// selecting the word's orientation, whether it will be horizontal or vertical.
+    ///
+    /// First, the word's orientation is randomly selected. Then, a while loop is executed in which a row and a column are randomly selected,
+    /// and depending on the orientation, a check is made to see if the word, at that position, does not exceed the size of the grid.
+    /// If it exceeds, another row and column are randomly selected, and this process repeats until it fits within the size of the grid.
     func position (palavrainfo: String) -> Direction {
         var tuplePosi: Direction
         var fit: Bool = false
