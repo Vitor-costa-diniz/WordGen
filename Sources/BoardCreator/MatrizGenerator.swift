@@ -113,9 +113,23 @@ class MatrizGenerator {
     
     ///Terminates the program execution.
     func exitGame() {
-        for index in words.indices {
-            words[index].wasFound = true
-        }
+        var quit: String
+        repeat {
+            print("TEM CERTEZA QUE QUER SAIR?".red.bold, terminator: "")
+            print("(S/N)".bold, terminator: " ")
+            quit = readLine()?.uppercased() ?? ""
+            
+            switch quit {
+            case "S":
+                for index in words.indices {
+                    words[index].wasFound = true
+                }
+            case "N":
+                quit = "S"
+            default:
+                print("Resposta inválida")
+            }
+        } while quit != "S"
     }
 }
 
