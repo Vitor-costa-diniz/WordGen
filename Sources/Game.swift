@@ -44,12 +44,12 @@ class Game {
     }
     
     func gameOptions(option: String) {
-        switch option.lowercased() {
-        case "--hint":
+        switch option {
+        case GameOptions.hint:
             matrizGenerator.showHint()
-        case "--resolve":
+        case GameOptions.resolve:
             matrizGenerator.resolveGame()
-        case "--exit":
+        case GameOptions.quit:
             matrizGenerator.exitGame()
         default:
             break
