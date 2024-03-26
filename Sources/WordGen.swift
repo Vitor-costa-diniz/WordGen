@@ -28,14 +28,14 @@ struct WordGen: ParsableCommand {
     @Flag(name: [.customLong("start")], help: "Start game")
     var start: Bool = false
     
-    @Option(name: [.customLong("size")], help: "Custom board size, min 10x10 and max 40x40")
+    @Option(name: [.customLong("size")], help: "Custom board size, min 11x11 and max 26x26")
     var size: Int?
     
     mutating func run() throws {
         let game = Game()
         game.boardSize = size ?? 11
         
-        if start && (size ?? 11 >= 11 && size ?? 11 <= 40) {
+        if start && (size ?? 11 >= 11 && size ?? 11 <= 26) {
             game.startGame()
             
             while start {
@@ -54,7 +54,7 @@ struct WordGen: ParsableCommand {
                 game.printCurrentGame()
             }
         } else {
-            print("O tamanho para o tabuleiro tem que ser entre 11 e 40")
+            print("O tamanho para o tabuleiro tem que ser entre 11 e 26")
         }
     }
 }
