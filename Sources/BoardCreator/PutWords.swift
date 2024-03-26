@@ -42,6 +42,13 @@ extension MatrizGenerator {
         }
     }
     
+    /// Places the word in the generated grid at a random position while ensuring it fits within the boundaries of the grid and does not overlap with existing words.
+    /// - Parameter word: The word to be placed in the grid.
+    ///
+    /// This function modifies the `generatedGrid` property in place to include the given word in the grid.
+    /// It first verifies if the word can be placed in the grid without overlapping with existing words and fitting within the grid boundaries.
+    /// If necessary, it adjusts the word's position and orientation to find a suitable placement.
+    /// Once a valid position is found, the function updates the `generatedGrid` to include the word.
     func putWords(word: inout Word) {
         var line = word.initPosition[0]
         var column = word.initPosition[1]
@@ -81,7 +88,7 @@ extension MatrizGenerator {
         line = word.initPosition[0]
         column = word.initPosition[1]
         
-        // Começar a colar a palavra
+        /// Begins pasting the word onto the generated grid.
         switch word.orientation {
         case .horizontal:
             for _ in column..<column + wordSize {
