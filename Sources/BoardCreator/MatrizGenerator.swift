@@ -111,10 +111,8 @@ class MatrizGenerator {
     
     ///Terminates the program execution.
     func exitGame() {
-        for word in words {
-            if let index = words.firstIndex(where: { $0.name == word.name }) {
-                words[index].wasFound = true
-            }
+        for index in words.indices {
+            words[index].wasFound = true
         }
     }
 }

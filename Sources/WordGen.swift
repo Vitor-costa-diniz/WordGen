@@ -31,12 +31,6 @@ struct WordGen: ParsableCommand {
     @Option(name: [.customLong("size")], help: "Custom board size, min 10x10 and max 40x40")
     var size: Int?
     
-    @Option(name: .long, help: "Choose a language between Portuguese and English.")
-    var language: String?
-    
-    @Option(name: .shortAndLong, help: "Choose a theme from thise available, the list of themes can be found in help information.")
-    var theme: String?
-    
     mutating func run() throws {
         let game = Game()
         game.boardSize = size ?? 11
