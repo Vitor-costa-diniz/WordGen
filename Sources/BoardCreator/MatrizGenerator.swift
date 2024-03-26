@@ -14,13 +14,16 @@ class MatrizGenerator {
     private var chosenWords: [String] = []
     var generatedGrid: [[String]] = []
     
+    ///Creates the grid that will arrange the words in the word search puzzle and the random letters in the empty spaces.
     func generateGrid() {
+        ///Creates the initial grid with the size selected by the user and fills it with empty spaces.
         generatedGrid = [[String]](repeating: [String](repeating: "", count: boardSize), count: boardSize)
         
         sortition()
 
         fillWordsArray()
         
+        ///Place each word in the grid
         for var word in words {
             putWords(word: &word)
         }
@@ -112,6 +115,7 @@ class MatrizGenerator {
 }
 
 extension MatrizGenerator {
+    /// It fills the empty spaces left after all the words have already been placed in the game with random letters from the alphabet.
     private func fillEmptySpace() {
         for l in 0..<boardSize {
             for c in 0..<boardSize {
@@ -121,7 +125,8 @@ extension MatrizGenerator {
             }
         }
     }
-    
+
+    ///Randomly selects the theme and the words that will be present in the game.
     private func sortition() {
         let numWords: Int =  boardSize/2 + 3
         
@@ -134,6 +139,7 @@ extension MatrizGenerator {
         chosenWords = Array(chosenWords.prefix(numWords).map({$0.uppercased() }))
     }
     
+    ///Checks if the chosen word's length is less than or equal to the size of the matrix selected by the user and if the word has not been selected more than once.
     private func verifyWordsSize (words: [String], numWords: Int) {
         var word = ""
         var count: Int = 0
@@ -147,6 +153,7 @@ extension MatrizGenerator {
         }
     }
     
+    /// After selecting the words, an array of Word objects is assembled to facilitate future operations throughout the program.
     private func fillWordsArray() {
         for word in chosenWords {
             let wordPostion = position(palavrainfo: word)
