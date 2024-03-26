@@ -47,13 +47,13 @@ class MatrizGenerator {
         return remainingWordsCount > 0
     }
     
-    func verificaWords (palavraTentada: String) {
-        for palavra in words {
-            if palavra.name.isEqualIgnoringAccents(palavraTentada.uppercased()) {
-                if let index = words.firstIndex(where: { $0.name == palavra.name }) {
+    func verifycaWords (triedWord: String) {
+        for word in words {
+            if word.name.isEqualIgnoringAccents(triedWord.uppercased()) {
+                if let index = words.firstIndex(where: { $0.name == word.name }) {
                     words[index].wasFound = true
                 }
-                pintaPalavra(word: palavra)
+                pintaPalavra(word: word)
             }
         }
     }

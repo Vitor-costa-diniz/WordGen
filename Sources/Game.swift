@@ -25,7 +25,7 @@ class Game {
     }
     
     func checkWord(word: String) {
-        matrizGenerator.verificaWords(palavraTentada: word)
+        matrizGenerator.verifycaWords(palavraTentada: word)
     }
     
     func printCurrentGame() {
