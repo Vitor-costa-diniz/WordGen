@@ -47,6 +47,9 @@ class MatrizGenerator {
         return remainingWordsCount > 0
     }
     
+    /// Verifies if the word entered by the user is present in the array of words. If found, highlights the word in the grid.
+    ///
+    /// Accent marks in the word are ignored during the check.
     func verifycaWords (triedWord: String) {
         for word in words {
             if word.name.isEqualIgnoringAccents(triedWord.uppercased()) {
@@ -58,6 +61,7 @@ class MatrizGenerator {
         }
     }
     
+    /// Highlights a random letter in blue from a random word that has not been found yet.
     func showHint() {
         let unfoundWords = words.filter { !$0.wasFound }
         guard let word = unfoundWords.randomElement() else { return }
@@ -66,7 +70,6 @@ class MatrizGenerator {
         let line = word.initPosition[0]
         let column = word.initPosition[1]
         
-        // Começar a colar a palavra
         switch word.orientation {
         case .horizontal:
             let randomLetter = Int.random(in: 0..<wordSize)
@@ -78,6 +81,7 @@ class MatrizGenerator {
         }
     }
     
+    /// Highlights all the words in the game for the user and terminates the program execution.
     func resolveGame() {
         for word in words {
             let line = word.initPosition[0]
@@ -105,6 +109,7 @@ class MatrizGenerator {
         }
     }
     
+    ///Terminates the program execution.
     func exitGame() {
         for word in words {
             if let index = words.firstIndex(where: { $0.name == word.name }) {
