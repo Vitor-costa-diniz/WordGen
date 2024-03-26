@@ -53,7 +53,7 @@ class MatrizGenerator {
                 if let index = words.firstIndex(where: { $0.name == word.name }) {
                     words[index].wasFound = true
                 }
-                pintaPalavra(word: word)
+                highlightWord(word)
             }
         }
     }
@@ -161,14 +161,14 @@ extension MatrizGenerator {
         }
     }
     
-    private func pintaPalavra(word: Word) {
+    /// Changes the color in the grid for the spaces corresponding to the letters of this word to green.
+    private func highlightWord(_ word: Word) {
         let line = word.initPosition[0]
         let colunm = word.initPosition[1]
         let wordSize = word.name.count
         var letter = 0
         
         switch word.orientation {
-            // Começar a colar a palavra
         case .horizontal:
             for _ in colunm..<colunm + wordSize {
                 generatedGrid[line][colunm + letter] = generatedGrid[line][colunm + letter].green
