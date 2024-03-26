@@ -15,12 +15,14 @@ class Game {
     func startGame() {
         matrizGenerator.boardSize = boardSize
         
+        getTheme()
+        
         matrizGenerator.generateGrid()
 
         printStatements.startGame()
-
-        displayWordProgress()
         
+        displayTheme()
+        displayWordProgress()
         printCurrentGame()
     }
     
@@ -43,6 +45,10 @@ class Game {
         print("Current progress: \(unfoundWords)/\(totalWords)")
     }
     
+    func displayTheme() {
+        print("Current Theme: \(matrizGenerator.theme)")
+    }
+    
     func gameOptions(option: String) {
         switch option {
         case GameOptions.hint:
@@ -54,5 +60,12 @@ class Game {
         default:
             break
         }
+    }
+}
+
+extension Game {
+    private func getTheme() {
+        guard let theme = Constants.mockThemes.keys.randomElement() else { return }
+        matrizGenerator.theme = theme
     }
 }

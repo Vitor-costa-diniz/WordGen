@@ -47,6 +47,7 @@ struct WordGen: ParsableCommand {
                 
                 start = game.wereAllWordsFinded()
                 
+                game.displayTheme()
                 game.displayWordProgress()
                 game.printCurrentGame()
             }

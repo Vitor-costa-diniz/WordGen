@@ -10,6 +10,7 @@ import Foundation
 class MatrizGenerator {
     private let matriz = Array("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
     var boardSize: Int = 0
+    var theme: String = ""
     var words: [Word] = []
     private var chosenWords: [String] = []
     var generatedGrid: [[String]] = []
@@ -131,10 +132,10 @@ extension MatrizGenerator {
 
     ///Randomly selects the theme and the words that will be present in the game.
     private func sortition() {
-        let numWords: Int =  boardSize/2 + 3
-        
-        var mockMatriz: [String] = ["amora", "maçã", "banana", "abacaxi", "laranja", "morango", "uva", "limão", "pêssego", "melancia", "kiwi", "pera", "manga", "abacate", "melão", "caqui", "jabuticaba", "cereja", "framboesa", "goiaba", "figo", "batata", "cenoura", "alface", "tomate", "cebola", "abóbora", "mandioca", "beterraba", "brócolis"]
-        
+        let numWords: Int = (boardSize/2 + 3) + ((boardSize * boardSize) / 50)
+
+        var mockMatriz: [String] = Constants.mockThemes[theme] ?? [""]
+
         mockMatriz = mockMatriz.shuffled()
         
         verifyWordsSize(words: mockMatriz, numWords: numWords)
