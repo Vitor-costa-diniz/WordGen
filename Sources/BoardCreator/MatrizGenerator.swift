@@ -32,7 +32,7 @@ class MatrizGenerator {
         for l in 0...self.boardSize - 1 {
             for c in 0...self.boardSize - 1 {
                 print("\(generatedMatriz[l][c]) ",terminator: "")
-                usleep(10000)
+                usleep(UInt32(10000/boardSize))
             }
             print("")
         }
