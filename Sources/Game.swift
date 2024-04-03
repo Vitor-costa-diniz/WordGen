@@ -18,7 +18,7 @@ class Game {
         getTheme()
         
         matrizGenerator.generateGrid()
-
+        
         printStatements.startGame()
         
         displayTheme()
@@ -70,13 +70,13 @@ class Game {
     func gameOptions(option: String) {
         switch option {
         case GameOptions.hint.rawValue:
-            print("\(Constants.UseCases.hint)".blue)
-            print("")
+            printStatements.printHint()
             matrizGenerator.showHint()
+            
         case GameOptions.resolve.rawValue:
-            print("\(Constants.UseCases.resolve)".green)
-            print("")
+            printStatements.printResolve()
             matrizGenerator.resolveGame()
+            
         case GameOptions.quit.rawValue:
             matrizGenerator.exitGame()
         default:

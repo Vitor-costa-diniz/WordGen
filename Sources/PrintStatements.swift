@@ -35,4 +35,14 @@ class PrintStatements {
         print("")
         print("")
     }
+    
+    func printResolve() {
+        print("\(Constants.UseCases.resolve)".green)
+        print("")
+    }
+    
+    func printHint() {
+        print("\(Constants.UseCases.hint)".blue)
+        print("")
+    }
 }
