@@ -27,7 +27,10 @@ class Game {
     }
     
     func checkWord(word: String) {
-        matrizGenerator.verifycaWords(triedWord: word)
+        let wordFound = matrizGenerator.verifycaWords(triedWord: word)
+        
+        wordFound ? print("\(Constants.UseCases.youGotIt)".green) :
+        print("\(Constants.UseCases.tryAgain)".red)
     }
     
     func printCurrentGame() {

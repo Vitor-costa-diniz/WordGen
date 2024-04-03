@@ -34,6 +34,7 @@ class MatrizGenerator {
     
     func printMatriz() {
         for l in 0...self.boardSize - 1 {
+            print("                         ", terminator: "")
             for c in 0...self.boardSize - 1 {
                 print("\(generatedGrid[l][c]) ",terminator: "")
                 usleep(UInt32(10000/boardSize))
@@ -52,15 +53,18 @@ class MatrizGenerator {
     ///
     /// - Parameter triedWord: Word entered by the user
     /// Accent marks in the word are ignored during the check.
-    func verifycaWords (triedWord: String) {
+    func verifycaWords (triedWord: String) -> Bool {
+        var wordFound: Bool = false
         for word in words {
             if word.name.isEqualIgnoringAccents(triedWord.uppercased()) {
                 if let index = words.firstIndex(where: { $0.name == word.name }) {
                     words[index].wasFound = true
                 }
                 highlightWord(word)
+                wordFound = true
             }
         }
+        return wordFound
     }
     
     /// Highlights a random letter in blue from a random word that has not been found yet.
