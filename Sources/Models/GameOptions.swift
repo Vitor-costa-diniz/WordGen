@@ -7,8 +7,8 @@
 
 import Foundation
 
-enum GameOptions {
-    static var hint = "!hint"
-    static var quit = "!exit"
-    static var resolve = "!resolve"
+enum GameOptions: String, CaseIterable {
+    case hint = "!hint"
+    case quit = "!exit"
+    case resolve = "!resolve"
 }

@@ -25,6 +25,13 @@ enum Constants {
            |_||_|   \__, |  \__,_|\__, |\__,_|_|_| |_| ( )  | |
                     |___/         |___/                |/  /_/
 """#
+        static let hint = #"""
+          _   _ _       _
+         | | | (_)_ __ | |_
+         | |_| | | '_ \| __|
+         |  _  | | | | | |_
+         |_| |_|_|_| |_|\__|
+"""#
     }
     static let mockThemes: [String: [String]] = [
         "Esportes": ["futebol", "basquete", "tênis", "natação", "atletismo", "vôlei", "handebol", "ginástica", "ciclismo", "boxe", "judô", "ginástica", "surfe", "skate", "hóquei", "rúgbi", "golfe", "escalada", "canoagem", "esgrima", "taekwondo", "triatlo", "patinação", "lutalivre", "corrida", "futsal", "pentatlo", "saltosornamentais", "marchaatlética", "hóqueisobregrama"],

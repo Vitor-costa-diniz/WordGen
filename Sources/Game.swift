@@ -29,8 +29,10 @@ class Game {
     func checkWord(word: String) {
         let wordFound = matrizGenerator.verifycaWords(triedWord: word)
         
-        wordFound ? print("\(Constants.UseCases.youGotIt)".green) :
-        print("\(Constants.UseCases.tryAgain)".red)
+        if !GameOptions.allCases.contains(where: {$0.rawValue == word}) {
+            wordFound ? print("\(Constants.UseCases.youGotIt)".green) :
+            print("\(Constants.UseCases.tryAgain)".red)
+        }
     }
     
     func printCurrentGame() {
@@ -61,11 +63,13 @@ class Game {
     
     func gameOptions(option: String) {
         switch option {
-        case GameOptions.hint:
+        case GameOptions.hint.rawValue:
+            print("\(Constants.UseCases.hint)".blue)
+            print("")
             matrizGenerator.showHint()
-        case GameOptions.resolve:
+        case GameOptions.resolve.rawValue:
             matrizGenerator.resolveGame()
-        case GameOptions.quit:
+        case GameOptions.quit.rawValue:
             matrizGenerator.exitGame()
         default:
             break
