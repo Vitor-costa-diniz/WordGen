@@ -40,8 +40,14 @@ class Game {
         print("")
     }
     
-    func wereAllWordsFinded() -> Bool {
-        return matrizGenerator.verifyRemainWords()
+    func wereAllWordsFinded(winCondition: Bool?) -> Bool {
+        let wordsFidended = matrizGenerator.verifyRemainWords()
+        
+        if winCondition ?? false && !wordsFidended {
+            print("\(Constants.UseCases.win)".green)
+        }
+        
+        return wordsFidended
     }
     
     func displayWordProgress() {
