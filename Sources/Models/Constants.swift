@@ -32,6 +32,22 @@ enum Constants {
          |  _  | | | | | |_
          |_| |_|_|_| |_|\__|
 """#
+        static let resolve = #"""
+          ____                 _               _   _
+         |  _ \ ___  ___  ___ | |_   _____  __| | | |
+         | |_) / _ \/ __|/ _ \| \ \ / / _ \/ _` | | |
+         |  _ <  __/\__ \ (_) | |\ V /  __/ (_| | |_|
+         |_| \_\___||___/\___/|_| \_/ \___|\__,_| (_)
+                                             
+"""#
+        static let quit = #"""
+          ____                                  _       _              _
+         / ___|  ___  ___   _   _  ___  _   _  | | __ _| |_ ___ _ __  | |
+         \___ \ / _ \/ _ \ | | | |/ _ \| | | | | |/ _` | __/ _ \ '__| | |
+          ___) |  __/  __/ | |_| | (_) | |_| | | | (_| | ||  __/ |    |_|
+         |____/ \___|\___|  \__, |\___/ \__,_| |_|\__,_|\__\___|_|    (_)
+                            |___/
+"""#
     }
     static let mockThemes: [String: [String]] = [
         "Esportes": ["futebol", "basquete", "tênis", "natação", "atletismo", "vôlei", "handebol", "ginástica", "ciclismo", "boxe", "judô", "ginástica", "surfe", "skate", "hóquei", "rúgbi", "golfe", "escalada", "canoagem", "esgrima", "taekwondo", "triatlo", "patinação", "lutalivre", "corrida", "futsal", "pentatlo", "saltosornamentais", "marchaatlética", "hóqueisobregrama"],

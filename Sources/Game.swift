@@ -68,6 +68,8 @@ class Game {
             print("")
             matrizGenerator.showHint()
         case GameOptions.resolve.rawValue:
+            print("\(Constants.UseCases.resolve)".green)
+            print("")
             matrizGenerator.resolveGame()
         case GameOptions.quit.rawValue:
             matrizGenerator.exitGame()

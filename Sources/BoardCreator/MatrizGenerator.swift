@@ -128,6 +128,8 @@ class MatrizGenerator {
                 for index in words.indices {
                     words[index].wasFound = true
                 }
+                print("\(Constants.UseCases.quit)".yellow)
+                print("")
             case "N":
                 quit = "S"
             default:
