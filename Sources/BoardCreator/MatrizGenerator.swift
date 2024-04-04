@@ -11,6 +11,7 @@ class MatrizGenerator {
     private let matriz = Array("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
     var boardSize: Int = 0
     var theme: String = ""
+    var themeWords: [String] = []
     var words: [Word] = []
     private var chosenWords: [String] = []
     var generatedGrid: [[String]] = []
@@ -152,7 +153,7 @@ extension MatrizGenerator {
 
         var mockMatriz: [String] = Constants.mockThemes[theme] ?? [""]
 
-        mockMatriz = mockMatriz.shuffled()
+        mockMatriz = themeWords.shuffled()
         
         verifyWordsSize(words: mockMatriz, numWords: numWords)
         
