@@ -88,17 +88,15 @@ class Game {
 
 extension Game {
     private func getTheme() {
-        
         FileHandler.projectName = "WordGen"
+
         do {
-            guard let theme = try FileHandler.listContents(in: "Animais.txt").randomElement() else { return }
-            print(theme)
-            
+            for theme in Constants.mockThemes {
+                try FileHandler.savePlainText(content: theme.value, at: "Themes/\(theme.key).txt")
+            }
+            let themes = try FileHandler.listContents(in: "Themes").map({$0.replacingOccurrences(of: ".txt", with: "")})
+            guard let theme = themes.randomElement() else { return }
             matrizGenerator.theme = theme
-            
-            let contents: [String] = try FileHandler.readPlainText(at: theme)
-            matrizGenerator.themeWords = contents
-            
         } catch {
             print(error)
         }

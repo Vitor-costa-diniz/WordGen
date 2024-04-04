@@ -153,7 +153,7 @@ extension MatrizGenerator {
 
         var mockMatriz: [String] = Constants.mockThemes[theme] ?? [""]
 
-        mockMatriz = themeWords.shuffled()
+        mockMatriz = mockMatriz.shuffled()
         
         verifyWordsSize(words: mockMatriz, numWords: numWords)
         

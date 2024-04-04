@@ -20,46 +20,14 @@ public struct FileHandler {
     }
     private static var _projectName: String = ""
     
-
-    //    public static func readPlainText(at path: String, separator: String = "\n") throws -> [String] {
-    //        let url = try buildURL(appending: path)
-    //        let data = try Data(contentsOf: url)
-    //        let string = String(bytes: data, encoding: .utf8)
-    //        var components = string?.components(separatedBy: separator) ?? []
-    //        if components.last?.isEmpty ?? false { components.removeLast() }
-    //        return components
-    //    }
-    //
-    //    public static func listContents(in path: String) throws -> [String] {
-    //        let url = try buildURL(appending: path)
-    //        let contents = try FileManager.default.contentsOfDirectory(at: url, includingPropertiesForKeys: [])
-    //        return contents.map { $0.lastPathComponent }
-    //    }
-    //
-    //    private static func buildURL(appending path: String) throws -> URL {
-    //        // Get the path of the current file
-    //        let currentFileURL = URL(fileURLWithPath: #file)
-    //        // Navigate to the package directory
-    //        let packageDirectory = currentFileURL.deletingLastPathComponent().deletingLastPathComponent()
-    //
-    //        let projectFolder = packageDirectory.appendingPathComponent("Themes")
-    //
-    //        if !FileManager.default.fileExists(atPath: projectFolder.relativePath) {
-    //            try FileManager.default.createDirectory(at: projectFolder, withIntermediateDirectories: true)
-    //        }
-    //
-    //        var components = path.components(separatedBy: "/")
-    //        components.removeLast() // removing file from path components
-    //
-    //        components.indices.forEach { index in
-    //            var folderURL = projectFolder.appendingPathComponent(components[0])
-    //            if index != 0 {
-    //                folderURL.appendPathComponent(Array(1...index).map { components[$0] }.joined(separator: "/"))
-    //            }
-    //        }
-    //
-    //        return projectFolder.appendingPathComponent(path)
-    //    }
+    public static func savePlainText(content: [String], at path: String, separator: String = "\n") throws {
+        let url = try buildURL(appending: path)
+        if let data = content
+            .joined(separator: separator)
+            .data(using: .utf8) {
+            try data.write(to: url)
+        }
+    }
     
     public static func readPlainText(at path: String, separator: String = "\n") throws -> [String] {
         let url = try buildURL(appending: path)
@@ -96,6 +64,4 @@ public struct FileHandler {
         }
         return projectFolder.appending(path: path)
     }
-    
-    
 }
