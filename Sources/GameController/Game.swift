@@ -88,7 +88,33 @@ class Game {
 
 extension Game {
     private func getTheme() {
-        guard let theme = Constants.mockThemes.keys.randomElement() else { return }
-        matrizGenerator.theme = theme
+        FileHandler.projectName = "WordGen"
+
+        do {
+            for theme in Constants.mockThemes {
+                let path: String = "Themes/\(theme.key).txt"
+                try FileHandler.savePlainText(content: theme.value, at: path )
+            }
+            let themes = try FileHandler.listContents(in: "Themes")
+                .map({$0.replacingOccurrences(of: ".txt", with: "")})
+            guard let theme = themes.randomElement() else { return }
+            matrizGenerator.theme = theme
+            
+            getWords()
+        } catch {
+            print(error)
+        }
+    }
+    
+    private func getWords() {
+        let theme = matrizGenerator.theme
+        do {
+            let words = try FileHandler.readPlainText(at: "Themes/\(theme).txt")
+                .map({$0.replacingOccurrences(of: " ", with: "")})
+                .map({$0.replacingOccurrences(of: "-", with: "")})
+            matrizGenerator.themeWords = words
+        } catch {
+            print(error)
+        }
     }
 }

@@ -39,7 +39,7 @@ struct WordGen: ParsableCommand {
             game.startGame()
             
             while start {
-                print("Digite uma palavra que você achou: ",terminator: "")
+                print("Type a word that you found: ",terminator: "")
                 let input = readLine()?.replacingOccurrences(of: " ", with: "") ?? ""
                 
                 game.printLine()
@@ -56,7 +56,7 @@ struct WordGen: ParsableCommand {
                 game.printCurrentGame()
             }
         } else {
-            print("O tamanho para o tabuleiro tem que ser entre 11 e 26")
+            print("The size for the board must be between 11 and 26")
         }
     }
 }
