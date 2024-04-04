@@ -1,6 +1,6 @@
 //
 //  File.swift
-//  
+//
 //
 //  Created by Vitor Costa on 21/03/24.
 //
@@ -40,14 +40,14 @@ class Game {
         print("")
     }
     
-    func wereAllWordsFinded(winCondition: Bool?) -> Bool {
+    func wereAllWordsFinded() {
         let wordsFidended = matrizGenerator.verifyRemainWords()
         
-        if winCondition ?? false && !wordsFidended {
-            print("\(Constants.UseCases.win)".green)
+        if !wordsFidended {
+            GameControl.shared.displayWinMessage = true
+            GameControl.shared.keepGame = false
+            printStatements.printWin()
         }
-        
-        return wordsFidended
     }
     
     func displayWordProgress() {
@@ -74,6 +74,7 @@ class Game {
             matrizGenerator.showHint()
             
         case GameOptions.resolve.rawValue:
+            GameControl.shared.keepGame = false
             printStatements.printResolve()
             matrizGenerator.resolveGame()
             

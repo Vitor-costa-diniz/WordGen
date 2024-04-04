@@ -45,4 +45,9 @@ class PrintStatements {
         print("\(Constants.UseCases.hint)".blue)
         print("")
     }
+    
+    func printWin() {
+        print("\(Constants.UseCases.win)".green)
+        print("")
+    }
 }

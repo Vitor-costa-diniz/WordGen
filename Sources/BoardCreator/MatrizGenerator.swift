@@ -109,9 +109,6 @@ class MatrizGenerator {
                     letter += 1
                 }
             }
-            if let index = words.firstIndex(where: { $0.name == word.name }) {
-                words[index].wasFound = true
-            }
         }
     }
     
@@ -125,9 +122,7 @@ class MatrizGenerator {
             
             switch quit {
             case "S":
-                for index in words.indices {
-                    words[index].wasFound = true
-                }
+                GameControl.shared.keepGame = false
                 print("\(Constants.UseCases.quit)".yellow)
                 print("")
             case "N":

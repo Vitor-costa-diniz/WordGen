@@ -28,7 +28,7 @@ struct WordGen: ParsableCommand {
     @Flag(name: [.customLong("start")], help: "Start game")
     var start: Bool = false
     
-    @Option(name: [.customLong("size")], help: "Custom board size, min 11x11 and max 26x26")
+    @Option(name: [.customLong("size")], help: "Custom board size, min 11 and max 26")
     var size: Int?
     
     mutating func run() throws {
@@ -47,7 +47,9 @@ struct WordGen: ParsableCommand {
                 game.checkWord(word: input)
                 game.gameOptions(option: input)
                 
-                start = game.wereAllWordsFinded(winCondition: true)
+                game.wereAllWordsFinded()
+                
+                start = GameControl.shared.keepGame
                 
                 game.displayTheme()
                 game.displayWordProgress()
