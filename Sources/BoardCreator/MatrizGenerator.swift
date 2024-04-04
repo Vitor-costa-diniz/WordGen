@@ -149,13 +149,13 @@ extension MatrizGenerator {
 
     ///Randomly selects the theme and the words that will be present in the game.
     private func sortition() {
+        // Modificar isso, para verificar se o tamanho de palavras escrito pelo usuario é suficiente para realizar
+        // essa operação, pois podem ter poucas palavras e n da esse numero de palavras
         let numWords: Int = (boardSize/2 + 3) + ((boardSize * boardSize) / 50)
 
-        var mockMatriz: [String] = Constants.mockThemes[theme] ?? [""]
-
-        mockMatriz = mockMatriz.shuffled()
+        themeWords = themeWords.shuffled()
         
-        verifyWordsSize(words: mockMatriz, numWords: numWords)
+        verifyWordsSize(words: themeWords, numWords: numWords)
         
         chosenWords = Array(chosenWords.prefix(numWords).map({$0.uppercased() }))
     }
