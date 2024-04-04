@@ -117,21 +117,21 @@ class MatrizGenerator {
     func exitGame() {
         var quit: String
         repeat {
-            print("TEM CERTEZA QUE QUER SAIR?".red.bold, terminator: "")
-            print("(S/N)".bold, terminator: " ")
+            print("ARE YOU SURE YOU WANT TO LEAVE?".red.bold, terminator: "")
+            print("(Y/N)".bold, terminator: " ")
             quit = readLine()?.uppercased() ?? ""
             
             switch quit {
-            case "S":
+            case "Y":
                 GameControl.shared.keepGame = false
                 print("\(Constants.UseCases.quit)".yellow)
                 print("")
             case "N":
-                quit = "S"
+                quit = "Y"
             default:
-                print("Resposta inválida")
+                print("Invalid response")
             }
-        } while quit != "S"
+        } while quit != "Y"
     }
 }
 
