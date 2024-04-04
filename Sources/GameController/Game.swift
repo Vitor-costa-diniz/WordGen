@@ -111,6 +111,7 @@ extension Game {
         do {
             let words = try FileHandler.readPlainText(at: "Themes/\(theme).txt")
                 .map({$0.replacingOccurrences(of: " ", with: "")})
+                .map({$0.replacingOccurrences(of: "-", with: "")})
             matrizGenerator.themeWords = words
         } catch {
             print(error)
