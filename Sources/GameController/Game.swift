@@ -124,7 +124,3 @@ extension Game {
         }
     }
 }
-
-enum WordCountErrors: Error {
-    case isEmpty
-}

@@ -149,11 +149,11 @@ extension MatrizGenerator {
 
     ///Randomly selects the theme and the words that will be present in the game.
     private func sortition() {
-        // Modificar isso, para verificar se o tamanho de palavras escrito pelo usuario é suficiente para realizar
-        // essa operação, pois podem ter poucas palavras e n da esse numero de palavras
-        let numWords: Int = (boardSize/2 + 3) + ((boardSize * boardSize) / 50)
+        var numWords: Int = (boardSize/2 + 3) + ((boardSize * boardSize) / 50)
 
         themeWords = themeWords.shuffled()
+        /// If the number of words is less than the calculated number of words, the numWords becomes the number of words in the file and allows the program execution to continue.
+        if numWords > themeWords.count { numWords = themeWords.count }
         
         verifyWordsSize(words: themeWords, numWords: numWords)
         
