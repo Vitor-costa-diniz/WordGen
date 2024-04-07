@@ -36,24 +36,28 @@ struct WordGen: ParsableCommand {
         game.boardSize = size ?? 11
         
         if start && (size ?? 11 >= 11 && size ?? 11 <= 26) {
-            game.startGame()
-            
-            while start {
-                print("Type a word that you found: ",terminator: "")
-                let input = readLine()?.replacingOccurrences(of: " ", with: "") ?? ""
+            do {
+                try game.startGame()
                 
-                game.printLine()
+                while start {
+                    print("Type a word that you found: ",terminator: "")
+                    let input = readLine()?.replacingOccurrences(of: " ", with: "") ?? ""
+                    
+                    game.printLine()
 
-                game.checkWord(word: input)
-                game.gameOptions(option: input)
-                
-                game.wereAllWordsFinded()
-                
-                start = GameControl.shared.keepGame
-                
-                game.displayTheme()
-                game.displayWordProgress()
-                game.printCurrentGame()
+                    game.checkWord(word: input)
+                    game.gameOptions(option: input)
+                    
+                    game.wereAllWordsFinded()
+                    
+                    start = GameControl.shared.keepGame
+                    
+                    game.displayTheme()
+                    game.displayWordProgress()
+                    game.printCurrentGame()
+                }
+            } catch {
+                start = false
             }
         } else {
             print("The size for the board must be between 11 and 26")

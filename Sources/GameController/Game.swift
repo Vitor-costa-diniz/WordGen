@@ -12,18 +12,23 @@ class Game {
     private let matrizGenerator: MatrizGenerator = MatrizGenerator()
     private let printStatements: PrintStatements = PrintStatements()
     
-    func startGame() {
-        matrizGenerator.boardSize = boardSize
-        
-        getTheme()
-        
-        matrizGenerator.generateGrid()
-        
-        printStatements.startGame()
-        
-        displayTheme()
-        displayWordProgress()
-        printCurrentGame()
+    func startGame() throws {
+        do {
+            matrizGenerator.boardSize = boardSize
+            
+            try getTheme()
+            
+            matrizGenerator.generateGrid()
+            
+            printStatements.startGame()
+            
+            displayTheme()
+            displayWordProgress()
+            printCurrentGame()
+        } catch {
+            print("Error: The file for theme '\(matrizGenerator.theme)' is empty.")
+            throw error
+        }
     }
     
     func checkWord(word: String) {
@@ -87,7 +92,7 @@ class Game {
 }
 
 extension Game {
-    private func getTheme() {
+    private func getTheme() throws {
         FileHandler.projectName = "WordGen"
 
         do {
@@ -100,21 +105,26 @@ extension Game {
             guard let theme = themes.randomElement() else { return }
             matrizGenerator.theme = theme
             
-            getWords()
+            try getWords()
         } catch {
-            print(error)
+            throw error
         }
     }
     
-    private func getWords() {
+    private func getWords() throws {
         let theme = matrizGenerator.theme
         do {
             let words = try FileHandler.readPlainText(at: "Themes/\(theme).txt")
                 .map({$0.replacingOccurrences(of: " ", with: "")})
                 .map({$0.replacingOccurrences(of: "-", with: "")})
+            if words.isEmpty { throw WordCountErrors.isEmpty }
             matrizGenerator.themeWords = words
         } catch {
-            print(error)
+            throw WordCountErrors.isEmpty
         }
     }
+}
+
+enum WordCountErrors: Error {
+    case isEmpty
 }
