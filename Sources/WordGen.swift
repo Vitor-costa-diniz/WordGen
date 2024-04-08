@@ -31,33 +31,40 @@ struct WordGen: ParsableCommand {
     @Option(name: [.customLong("size")], help: "Custom board size, min 11 and max 26")
     var size: Int?
     
+    @Option(name: .shortAndLong, help: "Select a theme. If none is selected, a theme will be chosen randomly.")
+    var theme: String?
+    
     mutating func run() throws {
         let game = Game()
         game.boardSize = size ?? 11
+        game.choosenTheme = theme
+        game.verifyChoosenTheme()
         
         if start && (size ?? 11 >= 11 && size ?? 11 <= 26) {
-            do {
-                try game.startGame()
-                
-                while start {
-                    print("Type a word that you found: ",terminator: "")
-                    let input = readLine()?.replacingOccurrences(of: " ", with: "") ?? ""
+            if !game.themeIsEmpty {
+                do {
+                    try game.startGame()
                     
-                    game.printLine()
-
-                    game.checkWord(word: input)
-                    game.gameOptions(option: input)
-                    
-                    game.wereAllWordsFinded()
-                    
-                    start = GameControl.shared.keepGame
-                    
-                    game.displayTheme()
-                    game.displayWordProgress()
-                    game.printCurrentGame()
+                    while start {
+                        print("Type a word that you found: ",terminator: "")
+                        let input = readLine()?.replacingOccurrences(of: " ", with: "") ?? ""
+                        
+                        game.printLine()
+                        
+                        game.checkWord(word: input)
+                        game.gameOptions(option: input)
+                        
+                        game.wereAllWordsFinded()
+                        
+                        start = GameControl.shared.keepGame
+                        
+                        game.displayTheme()
+                        game.displayWordProgress()
+                        game.printCurrentGame()
+                    }
+                } catch {
+                    start = false
                 }
-            } catch {
-                start = false
             }
         } else {
             print("The size for the board must be between 11 and 26")

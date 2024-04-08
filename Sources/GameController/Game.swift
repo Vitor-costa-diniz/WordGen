@@ -9,6 +9,8 @@ import Foundation
 
 class Game {
     var boardSize: Int = 0
+    var choosenTheme: String?
+    var themeIsEmpty = true
     private let matrizGenerator: MatrizGenerator = MatrizGenerator()
     private let printStatements: PrintStatements = PrintStatements()
     
@@ -16,7 +18,11 @@ class Game {
         do {
             matrizGenerator.boardSize = boardSize
             
-            try getTheme()
+            if themeIsEmpty {
+                try getTheme()
+            }
+            
+            try getWords()
             
             matrizGenerator.generateGrid()
             
@@ -28,6 +34,26 @@ class Game {
         } catch {
             print("Error: The file for theme '\(matrizGenerator.theme)' is empty.")
             throw error
+        }
+    }
+    
+    func verifyChoosenTheme() {
+        FileHandler.projectName = "WordGen"
+        
+        do {
+            let themes = try FileHandler.listContents(in: "Themes")
+                .map({$0.replacingOccurrences(of: ".txt", with: "")})
+            let theme = choosenTheme ?? "empty"
+            if themes.contains(theme) {
+                matrizGenerator.theme = theme
+                themeIsEmpty = false
+            } else {
+                if choosenTheme != nil {
+                    print("Selected theme does not exist. Please verify if you typed the theme name correctly. Here is the list of themes: \(themes.map({$0.replacingOccurrences(of: ".txt", with: "")}))")
+                }
+            }
+        } catch {
+            print(error)
         }
     }
     
@@ -93,8 +119,6 @@ class Game {
 
 extension Game {
     private func getTheme() throws {
-        FileHandler.projectName = "WordGen"
-
         do {
             for theme in Constants.mockThemes {
                 let path: String = "Themes/\(theme.key).txt"
@@ -104,8 +128,6 @@ extension Game {
                 .map({$0.replacingOccurrences(of: ".txt", with: "")})
             guard let theme = themes.randomElement() else { return }
             matrizGenerator.theme = theme
-            
-            try getWords()
         } catch {
             throw error
         }
