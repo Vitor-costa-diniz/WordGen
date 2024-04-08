@@ -41,8 +41,8 @@ struct WordGen: ParsableCommand {
         game.verifyChoosenTheme()
         
         if start && (size ?? 11 >= 11 && size ?? 11 <= 26) {
-            if !game.themeIsEmpty {
-                do {
+            do {
+                if game.continueGame {
                     try game.startGame()
                     
                     while start {
@@ -62,9 +62,9 @@ struct WordGen: ParsableCommand {
                         game.displayWordProgress()
                         game.printCurrentGame()
                     }
-                } catch {
-                    start = false
                 }
+            } catch {
+                start = false
             }
         } else {
             print("The size for the board must be between 11 and 26")

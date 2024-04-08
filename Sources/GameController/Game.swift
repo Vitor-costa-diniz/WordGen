@@ -11,6 +11,7 @@ class Game {
     var boardSize: Int = 0
     var choosenTheme: String?
     var themeIsEmpty = true
+    var continueGame = true
     private let matrizGenerator: MatrizGenerator = MatrizGenerator()
     private let printStatements: PrintStatements = PrintStatements()
     
@@ -39,17 +40,19 @@ class Game {
     
     func verifyChoosenTheme() {
         FileHandler.projectName = "WordGen"
+        var theme: String = ""
         
         do {
             let themes = try FileHandler.listContents(in: "Themes")
                 .map({$0.replacingOccurrences(of: ".txt", with: "")})
-            let theme = choosenTheme ?? "empty"
+            theme = choosenTheme ?? ""
             if themes.contains(theme) {
                 matrizGenerator.theme = theme
                 themeIsEmpty = false
             } else {
-                if choosenTheme != nil {
+                if !theme.isEmpty {
                     print("Selected theme does not exist. Please verify if you typed the theme name correctly. Here is the list of themes: \(themes.map({$0.replacingOccurrences(of: ".txt", with: "")}))")
+                    continueGame = false
                 }
             }
         } catch {
