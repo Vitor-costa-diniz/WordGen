@@ -165,7 +165,7 @@ extension MatrizGenerator {
         var word = ""
         var count: Int = 0
         
-        while count <= numWords {
+        while count < numWords {
             word = words.randomElement()!
             if word.count < boardSize - 1 && !chosenWords.contains(word) {
                 chosenWords.append(word)
