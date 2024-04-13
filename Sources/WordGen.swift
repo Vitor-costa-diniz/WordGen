@@ -15,7 +15,8 @@ struct WordGen: ParsableCommand {
         
         Is a word search project that aims to save you in times of boredom,
         in addition to all the cognitive benefits that a word search already brings,
-        generate a random word search puzzle among 5 themes.
+        generate a random word search puzzle among 5 themes.You can add new themes
+        and select specific themes as well.
         
         """,
         discussion: """
@@ -25,10 +26,10 @@ struct WordGen: ParsableCommand {
           !exit          Exit the game.
           
           """)
-    @Flag(name: [.customLong("start")], help: "Start game")
+    @Flag(name: [.customLong("start")], help: "Start game.")
     var start: Bool = false
     
-    @Option(name: [.customLong("size")], help: "Custom board size, min 11 and max 26")
+    @Option(name: [.customLong("size")], help: "Custom board size, min 11 and max 26.")
     var size: Int?
     
     @Option(name: .shortAndLong, help: "Select a theme. If none is selected, a theme will be chosen randomly.")
@@ -66,8 +67,10 @@ struct WordGen: ParsableCommand {
             } catch {
                 start = false
             }
+        }  else if start == false {
+            throw CleanExit.helpRequest(self)
         } else {
-            print("The size for the board must be between 11 and 26")
+            print("The size for the board must be between 11 and 26.")
         }
     }
 }

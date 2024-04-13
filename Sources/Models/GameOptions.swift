@@ -11,4 +11,5 @@ enum GameOptions: String, CaseIterable {
     case hint = "!hint"
     case quit = "!exit"
     case resolve = "!resolve"
+    case monkey = "monkey"
 }

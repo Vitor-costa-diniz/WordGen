@@ -114,6 +114,9 @@ class Game {
             
         case GameOptions.quit.rawValue:
             matrizGenerator.exitGame()
+
+        case GameOptions.monkey.rawValue:
+            printStatements.mamaco()
         default:
             break
         }
