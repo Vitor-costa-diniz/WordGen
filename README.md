@@ -6,8 +6,8 @@ WORDGEN is a word search project that aims to save you in times of boredom. In a
 
 To use WORDGEN, follow these steps:
 
-1. Install WORDGEN using Homebrew by running the following command in your terminal: brew install wordgen
-2. Once installed, you can start using WORDGEN by running the command: wordgen
+1. Install WORDGEN using Homebrew by running the following command in your terminal: `brew install wordgen`
+2. Once installed, you can start using WORDGEN by running the command: `wordgen`
 
 ## Adding New Themes
 
