@@ -51,7 +51,11 @@ class Game {
                 themeIsEmpty = false
             } else {
                 if !theme.isEmpty {
-                    print("Selected theme does not exist. Please verify if you typed the theme name correctly. Here is the list of themes: \(themes.map({$0.replacingOccurrences(of: ".txt", with: "")}))")
+                    print("""
+                    Error: Selected theme does not exist. Please verify if you typed the theme name correctly.
+                    Here is the list of themes:
+                    \(themes.map({$0.replacingOccurrences(of: ".txt", with: "")}))
+                    """)
                     continueGame = false
                 }
             }
