@@ -155,7 +155,7 @@ extension Game {
         }
     }
     
-    func generateGridWithinTimeLimit() throws {
+    private func generateGridWithinTimeLimit() throws {
         let semaphore = DispatchSemaphore(value: 0)
         DispatchQueue.global().async {
                 self.matrizGenerator.generateGrid()
