@@ -25,16 +25,15 @@ class Game {
             
             try getWords()
             
-            matrizGenerator.generateGrid()
+            try generateGridWithinTimeLimit()
             
             printStatements.startGame()
-            
             displayTheme()
             displayWordProgress()
             printCurrentGame()
-        } catch {
+        } catch WordCountErrors.isEmpty {
             print("Error: The file for theme '\(matrizGenerator.theme)' is empty.")
-            throw error
+            throw WordCountErrors.isEmpty
         }
     }
     
@@ -153,6 +152,19 @@ extension Game {
             matrizGenerator.themeWords = words
         } catch {
             throw WordCountErrors.isEmpty
+        }
+    }
+    
+    func generateGridWithinTimeLimit() throws {
+        let semaphore = DispatchSemaphore(value: 0)
+        DispatchQueue.global().async {
+                self.matrizGenerator.generateGrid()
+            semaphore.signal()
+        }
+        let timeout = DispatchTime.now() + 0.6
+        if semaphore.wait(timeout: timeout) == .timedOut {
+            print("Error: Words are too long or exceed the board size, making it impossible to create the game.")
+            throw GameError.gridGenerationTimeout
         }
     }
 }
