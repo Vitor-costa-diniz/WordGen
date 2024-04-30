@@ -5,11 +5,12 @@ build:
 	swift build -c release --disable-sandbox
 
 install: build
-	install ".build/release/WordGen" "$(bindir)"
-	install_name_tool -change "$(bindir)/WordGen"
+	install -d "$(DESTDIR)$(bindir)"
+	install ".build/release/WordGen" "$(DESTDIR)$(bindir)/WordGen"
+	install_name_tool -change "$(bindir)/WordGen" "$(DESTDIR)$(bindir)/WordGen" "$(DESTDIR)$(bindir)/WordGen"
 
 uninstall:
-	rm -rf "$(bindir)/WordGen"
+	rm -f "$(DESTDIR)$(bindir)/WordGen"
 
 clean:
 	rm -rf .build
