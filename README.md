@@ -1,13 +1,28 @@
 # WORDGEN
 
+<img width="978" alt="Captura de Tela 2024-05-21 às 09 44 04" src="https://github.com/Vitor-costa-diniz/WordGen/assets/78705027/d6e51f90-5418-4b01-8fc7-a27941c67417">
+
 WORDGEN is a word search project that aims to save you in times of boredom. In addition to all the cognitive benefits that a word search already brings, it generates a random word search puzzle among 5 themes. You can add new themes and select specific themes as well.
 
 ## Getting Started
 
 To use WORDGEN, follow these steps:
 
-1. Install WORDGEN using Homebrew by running the following command in your terminal: `brew install wordgen`
+1. Clone the repository, navigate to it, and run `make install`
 2. Once installed, you can start using WORDGEN by running the command: `wordgen`
+
+## Helper Commands
+
+WORDGEN provides several helper commands for better customization and navigation:
+
+`USAGE: wordgen [--start] [--size <size>] [--theme <theme>]`
+
+OPTIONS:
+
+- `--start`: Start the game.
+- `--size` <size>: Set a custom board size. The size must be between 11 and 26.
+- `-t, --theme` <theme>: Select a theme. If none is selected, a theme will be chosen randomly.
+- `-h, --help`: Show help information.
 
 ## Adding New Themes
 
@@ -26,6 +41,22 @@ If you want to solve a word search puzzle based on a specific theme, you can sel
 
 1. When prompted to choose a theme, enter the name of the theme you want to use.
 2. Enjoy solving word search puzzles related to your chosen theme!
+
+`USAGE: wordgen --start --theme Sports`
+
+## In-Game Options
+
+While playing a word search puzzle, you have several in-game options available. These options can be used by typing the corresponding command:
+
+- !hint: Provides a hint for one of the words in the puzzle.
+<img width="512" alt="Captura de Tela 2024-05-21 às 09 50 56" src="https://github.com/Vitor-costa-diniz/WordGen/assets/78705027/91d8e7d2-7484-4cae-b68f-9965b3966b8d">
+
+- !exit: Quits the current game.
+<img width="805" alt="Captura de Tela 2024-05-21 às 09 52 16" src="https://github.com/Vitor-costa-diniz/WordGen/assets/78705027/cbc1b237-f670-4dc8-8f9d-faf6c2789d35">
+
+- !resolve: Automatically resolves the current puzzle and shows all the word placements.
+<img width="585" alt="Captura de Tela 2024-05-21 às 09 52 51" src="https://github.com/Vitor-costa-diniz/WordGen/assets/78705027/ec449e0e-ee4a-4d19-9682-32432257c68f">
+
 
 ## Note
 
